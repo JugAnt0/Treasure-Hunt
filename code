@@ -1,0 +1,39 @@
+import random
+
+def treasure_hunt():
+    print("💎 Welcome to Treasure Hunt!")
+    print("Find the hidden treasure on a 5x5 grid.")
+    print("Enter guesses as row and column numbers (1–5).")
+
+  
+    treasure_row = random.randint(1, 5)
+    treasure_col = random.randint(1, 5)
+
+    attempts = 0
+
+    while True:
+        try:
+            row = int(input("Enter row (1–5): "))
+            col = int(input("Enter column (1–5): "))
+            attempts += 1
+
+            if not (1 <= row <= 5 and 1 <= col <= 5):
+                print("⚠️ Coordinates must be between 1 and 5.")
+                continue
+
+            if row == treasure_row and col == treasure_col:
+                print(f"🎉 You found the treasure in {attempts} attempts!")
+                break
+
+        
+            distance = abs(row - treasure_row) + abs(col - treasure_col)
+            if distance == 1:
+                print("🔥 Very close!")
+            elif distance <= 2:
+                print("🙂 Close!")
+            else:
+                print("❄️ Far away!")
+        except ValueError:
+            print("⚠️ Please enter valid numbers.")
+
+treasure_hunt()
